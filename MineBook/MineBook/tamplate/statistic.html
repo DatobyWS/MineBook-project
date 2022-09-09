@@ -1,0 +1,34 @@
+
+{% extends 'base.html'%}
+{% block content%}
+{% if request.user.is_superuser %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div id="blog" style="padding-top: 5px;">
+    <div id="main_profile" style="width: 1000px;height: 1150px;margin: 0 auto;padding-left: 5px;padding-right: 5px;padding-top: 5px;">
+        <h1>
+            Some Statistics on servers: 
+        </h1>
+        <br>
+        {% for key, val in mydict.items %}
+            <div style="background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; padding : 5px;font-size: 18px;">
+                <h2 style=" display: inline">The Server {{key}}:</H2><br>
+                    <h3 style=" display: inline">The highes players at the same time: {{val.Maxplayer}}</h3>
+                    <h3 style=" display: inline">at day: {{val.hightime}} </h3>
+                    <br>
+                    <h3 style=" display: inline">The Lowest players at the same time: {{val.Minplayer}}</h3>
+                    <h3 style=" display: inline">at day: {{val.lowtime}} </h3>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div id="main_profile" style="padding-top: 5px;"> 
+    <H1>404 Eror you cant go there
+    </H1>
+</div>
+{% endif %}
+{% endblock %}
+
+

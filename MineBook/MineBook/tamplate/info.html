@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div id="blog" style="padding-top: 5px;">
+    <div id="main_profile" style="width: 1000px;height: 1150px;margin: 0 auto;padding-left: 5px;padding-right: 5px;padding-top: 5px;">
+        <h1>
+            Abute Me and My Project: 
+        </h1>
+        <br>
+        <div style="background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; padding : 5px;font-size: 18px;">
+            <h1 style=" display: inline">hey {{user.username}} nice to see you, </H1><h3>So this is my little project, MineBook, a social network for Minecraft players, until now the application had to take api from server pages and display data in real time on the servers themselves, in the future I would like the application to actually have a likes and chats system that would actually allow players to rate and talk about those servers.</h3><br>
+            <h1 style=" display: inline">Explanation of the characterization of the application :</h1><h3> my code there are several functions that work in parallel to create the current site, the main functions are info_from_server(), update_url(), these two functions are responsible for the main table of the Minecraft servers, the function update_url() takes an api link and from it takes a dict that the function info_from_server reads () She reads the dict and extracts from it information relevant to me and the site, everything happens in the function in views which activates them and brings up the main page a function called home().</h3><br>
+            <h3> application has a large number of other functions, but I will also explain two more of them, as part of the project I wanted a user system that would allow you to register, connect and disconnect, one of the parameters to make the application in Django is its built-in user system which makes life easier for the programmer, in my application there are users that In addition to registrations, I prepared two modules for the system that separate between a normal user and a server user, each of them is saved in the central table for users, but each one is saved separately in different tables as a server user or a normal user.</h3><br>
+            <h3>In addition, I would like to tell you about my statistics system, every 15 minutes the system saves data in the database about the status of the players on the servers registered to me, from there I can do whatever I want with this information, what I currently see as appropriate is to check when there was the highest and lowest sky entry for each server separately, in the future I will be able to make more interesting data such as on which day of the week the server is most active or at what hours to strengthen the server on a daily basis. To see the statistics page you must be an administrator, to connect to the administrator please use the name: DatobyWS, password: 456789123a.</h3>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock %}

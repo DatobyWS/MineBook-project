@@ -1,0 +1,153 @@
+@font-face { 
+    src: url(fonts/MinecraftEvenings-RBao.ttf);
+    font-family:mine;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+.material-icons.md_small { font-size: 18px; }
+.material-icons.md_madium { font-size: 24px; }
+.material-icons.md_high { font-size: 36px; }
+.material-icons.md_huge { font-size: 48px; }
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#register_btn{
+    padding: 0%;
+    color:rgb( 0, 212, 49);
+}
+a{
+    color: rgb(217, 217, 217);
+    padding: 6px 65px 0px 65px;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:link {
+    color: rgb(217, 217, 217);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(217, 217, 217);
+    background-color: transparent;
+    text-decoration: none;
+  }
+a:hover{
+    color: rgb(116, 116, 116);
+    /* background-color: rgba(255, 255, 255, 0.749); */
+}
+header{
+    position:sticky;
+    background-image: url("https://www.planetminecraft.com/images/layout/themes/modern/header.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    display: block;
+    height: 130px;
+    width: 100%;
+    border: none;
+}
+#toolbar{
+    margin: auto auto;
+    height: 100%;
+    background-image:url(images/nav_bg.png);
+    height: 32px;
+    clear: both;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+#main_contect{
+    margin-top: 6px;
+    max-width: 66.875rem;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+body{
+    background-image: url(images/background1.png);
+
+}
+p{
+    margin-bottom:2px;
+    margin-top:5px;
+}
+.form{
+    
+    display: block;
+    background-color:rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+    padding: 8px 320px 8px 1px;
+    border-color:rgb(110, 110, 110);
+    transition: width 0.4s ease-in-out;
+    border-radius: 5px;
+}
+/* input ::marker{
+    border: 3px solid rgb(33, 33, 33);
+    width: 50%;
+    background-color:rgb(101, 101, 101);
+} */
+#submit{
+    text-align: center;
+    padding: 8px 20px 8px 20px;
+    background-color: rgb(0, 212, 49);
+    color: rgb(255, 255, 255);
+    border-color:rgb(0, 212, 49);
+}
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+form{
+    font-size: large;
+    display: block;
+}
+#div_form{
+    background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);
+    margin-top: 30px;
+    margin-left: 44%;
+    margin-right: 44%;
+    border-radius: 5px;
+}
+#try_agian{
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url(images/Stone-Block-600x600new.png);
+    color: white;
+    text-align: center;
+}

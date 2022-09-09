@@ -1,0 +1,103 @@
+@font-face { 
+    src: url(fonts/MinecraftEvenings-RBao.ttf);
+    font-family:mine;
+}
+@font-face{
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+.material-icons.md_small { font-size: 18px; }
+.material-icons.md_madium { font-size: 24px; }
+.material-icons.md_high { font-size: 36px; }
+.material-icons.md_huge { font-size: 48px; }
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    color: rgb(231, 231, 231);
+    padding: 6px 40px 0px 40px;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:link {
+    color: rgb(231, 231, 231);
+    background-color: transparent;
+    text-decoration: none;
+}
+a{
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover{
+    color: rgb(116, 116, 116);
+    /* background-color: rgba(255, 255, 255, 0.749); */
+}
+table {
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding:auto;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+}
+th,td{
+    background-image:url(images/nav_bg.png);
+    border: 1.5px solid black;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 7px;
+    font-size: 17px;
+}
+td{
+    color:rgb(255, 255, 255) ;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0);
+    font-size: 20px;
+}
+th{
+    color:rgb(255, 255, 255) ;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0);
+}
+#blog{
+    flex-direction: row;
+    min-height: 50em;
+    max-width: 66.875rem;
+    width: 100%;
+    margin: 5px auto 0;
+    border-radius: 5px 5px 0 0;
+    background-clip: padding-box;
+}

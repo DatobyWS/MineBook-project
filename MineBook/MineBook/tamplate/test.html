@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+        <div id="blog">
+            <div id="try_agian">
+                {% if messages%}
+                    {% for message in messages %}                    
+                        <a style="background-color:rgb(0, 221, 48) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
+                        {% endfor %}                
+                {% endif %}
+            </div>
+            <br>
+            <div id="div_table">
+                <form action="">
+                    <input id="id" name='q' type='search' data-search style="
+                    background-color:rgb(255, 255, 255);
+                    color:rgb(0, 0, 0);
+                    padding: 8px 130px 8px 1px;
+                    border-color:rgb(110, 110, 110);
+                    transition: width 0.4s ease-in-out;
+                    border-radius: 5px;margin-left: 34%;" placeholder="Search by name.." autofocus >
+                    <button type='submit' style="text-align: center;
+                    padding: 8px 20px 8px 20px;
+                    background-color: rgb(0, 212, 49);
+                    color: rgb(255, 255, 255);
+                    border-color:rgb(0, 212, 49);border-radius: 5px;">Search</button>
+                </form>
+                <table id="table" class="table">
+                <tr><th>NAME<th>ONLINE<th>IP<th onclick="sortTable()" style="cursor: pointer;" onmouseover="this.innerHTML='Click to sort by Players';" onmouseout="this.innerHTML='PLAYERS'">PLAYERS<th>VERSION
+                {% for key, val in mydict.items %}
+                    <tr class="s-{{ forloop.counter }}" id="s-{{ forloop.counter }}"><td id="td_ip"><a href="http://127.0.0.1:8000/ServerPage/{{key}}" style="cursor: pointer;">{{key}}</td>
+                    {% if val.online == "On" %}
+                        <td style="background-color:rgb(255, 255, 255) ;color: rgb(81, 255, 0);"><i class="fa-solid fa-check"></i></td>
+                    {% else %}
+                        <td style="background-color:rgb(221, 0, 0) ;color: rgb(255, 0, 0);"><i class="fa-solid fa-x"></i></td>
+                    {% endif %}
+                    <td class="td_ip" id="ip-{{ forloop.counter }}" onmouseover="this.innerHTML='Click to copy IP! : {{val.ip}}';" onmouseout="this.innerHTML='{{val.ip}}'" onclick="copyIP(document.getElementById(`ip-{{ forloop.counter }}`));" style="cursor: pointer;" >{{val.ip}}</td>
+                    <td>{{val.player}}</td>
+                    <td>{{val.version}}</td>
+                {% endfor %}
+                </table>
+                <input type="hidden"  id="clicks" value="2" >
+            </div>
+        </div>
+        <script src="{% static 'javascript/serch.js' %}"></script>
+{%endblock%}

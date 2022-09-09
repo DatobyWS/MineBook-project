@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div id="blog">
+    <div id="main_profile" style="width: 900px;height: 940px;margin: 0 auto;padding-left: 5px;padding-right: 5px;">
+        {% if a == 0 %}
+            <h1>Settings for {{user_profile.user.username}} user:</h1>
+        {% else %}
+            <h1>Settings for {{user_profile.user.username}} server:</h1>
+        {% endif %}
+        <form action="" method="post" enctype="multipart/form-data" style="background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; padding : 5px;font-size: 18px;margin-left: 150px;margin-right: 150px;margin-top: 10px">
+            {% csrf_token %}
+            {% if user_profile.profileimg %}
+            <div>
+                Profile Image:<p><img src="{{user_profile.profileimg.url}}" style="width: 588px;height: 447px;">
+                <input class="form" name="image" type="file" placeholder="Server name.." value="{{user_profile.profileimg.url}}"  style="width: 588px;padding-right: 0px;"><p>
+            </div>    
+            <br>
+            {% endif %}
+            <div>
+                Bio:<p><textarea class="form" name="bio" rows="10" style="width: 588px;padding-right: 0px;" autofocus>{{user_profile.bio}}</textarea><p>
+            </div>
+            <br>
+            {% if a == 0 %}
+                <div>
+                    location:<p><input class="form" name="location" value="{{user_profile.location}}" style="width: 588px;padding-right: 0px;"></textarea><p>
+                </div>
+            {% else %}
+                <div>
+                    trailer:<p><input class="form" name="location" value="{{user_profile.trailer}}" style="width: 588px;padding-right: 0px;"></textarea><p>
+                </div>
+            {% endif %}
+            <div>
+                <input type='submit' id="submit" class="form" placeholder="Submit!" style="margin-left: 507px;">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

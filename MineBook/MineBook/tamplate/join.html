@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+    <link rel="stylesheet" href="{% static 'css/join.css' %}">
+    <div id="div_form">
+        <form style='color:rgb(255, 255, 255)' method="post" action="{%url 'join'%}">
+            {% csrf_token %}
+            <div>
+                First name:<p><input class="form" name="first_name" type="text" placeholder="First name.." value="{{first_name}}"><p>
+                Last name:<p><input class="form" name="last_name" type="text" placeholder="Last name.."value="{{last_name}}">
+            </div>        
+            <div>
+                User name:<p><input class="form" name="user_name" type="text" placeholder="User name.."value="{{user_name}}">
+            </div>
+            <div>
+                Email:<p><input class="form" name="email" type="email" placeholder="Email.."value="{{email}}">
+            </div>
+            <div>
+                Password:<p><input class="form" name="passwd" id="password" type="password" placeholder="Password.."value="{{passwd}}"><p>
+                Check the Password:<p><input class="form" id="Check_password" placeholder="Check your password.." name="Check_password">
+            </div>
+            <div>
+                <p>Are you a Server page? click <a href="{%url 'serverReg'%}" id="register_btn" style="padding: 0%;color:rgb(0, 194, 212);">here</a>!</p>
+                <p>
+                <p>Do you already have a user? login <a href="{%url 'login'%}" id="register_btn" style="padding: 0%;color:rgb( 0, 212, 49);">here</a>!</p>
+                <p>
+                <input type='submit' id="submit" class="form" placeholder="Submit!">
+            </div>
+        </form>
+    </div>
+    <div id="try_agian">
+        {% if messages%}
+            {%for message in messages%}                    
+                <a style="background-color:rgb(154, 0, 0) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
+                {%endfor%}                
+        {% endif %}
+    </div>
+{%endblock%}

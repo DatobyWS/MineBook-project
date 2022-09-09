@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/join.css' %}">
+{% if user.is_authenticated %}
+<div id="div_form">
+    <form method="post" action="{%url 'logout'%}">
+            {%csrf_token%}     
+        <div id="logout">
+            <h1 style="font-family: mine;color:rgb( 0, 212, 49); text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0);letter-spacing: 2px">Are you sure you want to logout ?</h1>
+        </div>
+        <div>
+            <p>
+            <input type='submit' id="logout_submit" placeholder="Yes logout!">
+        </div>
+    </form>
+</div>
+{% else %}
+<h1>You are already logout, do you want to <a href="http://127.0.0.1:8000/login">login<a>?</h1>
+{% endif %}
+{% endblock %}

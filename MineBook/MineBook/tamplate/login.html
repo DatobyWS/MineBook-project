@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/join.css' %}">
+<div id="div_form">
+    <form style='color:rgb(255, 255, 255)' method="post" action="{%url 'login'%}">
+        {% csrf_token %}     
+        <div>
+            User name:<p><input name="user_name" class="form" type="text" placeholder="User name.."value="{{user_name}}" autofocus>
+        </div>
+        <div>
+            Password:<p><input name="passwd" class="form" id="passwd" type="password" placeholder="Password.."><p>
+        </div>
+        <div>
+            <p>Don't have a user yet? Register <a href="{%url 'join'%}" id="register_btn" style="padding: 0%;color:rgb( 0, 212, 49);">here</a>!</p>
+            <p>
+            <input type='submit' id="submit" class="form" placeholder="Submit!">
+        </div>
+    </form>
+</div>
+<div id="try_agian">
+    {% if messages%}
+        {%for message in messages%}                    
+            <a style="background-color:rgb(154, 0, 0) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
+            {%endfor%}                
+    {% endif %}
+</div>
+<div></div>
+{%endblock%}

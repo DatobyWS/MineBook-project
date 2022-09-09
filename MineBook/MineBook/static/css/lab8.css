@@ -1,0 +1,21 @@
+table {
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding:auto;
+    text-align: center;
+    margin: auto;
+}
+th,td{
+    background-image:url(images/nav_bg.png);
+    border: 1px solid black;
+
+}
+td{
+    color:rgb(255, 255, 255) ;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0);
+}
+th{
+    color:rgb(255, 255, 255) ;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0);
+}

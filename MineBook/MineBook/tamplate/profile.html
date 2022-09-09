@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block content%}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div id="blog">
+    <div id="try_agian">
+        {% if messages%}
+            {% for message in messages %}                    
+                <a style="background-color:rgb(0, 221, 48) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
+                {% endfor %}                
+        {% endif %}
+    </div>
+    <div id="main_profile" style="width: 1000px;height: 1150px;margin: 0 auto;padding-left: 5px;padding-right: 5px;">
+        <div id="img_profile" style="margin-left: px;padding-top: 5px;">
+            <img x="0" y="0" height="100%" width="100%" src="{{user_profile.profileimg.url}}" style="height: 64px; width: 64px;">
+            <h1 style=" display: inline ;font-family:mine;">{{user_profile.user.username}}</h1>
+        </div>
+        <br>
+        {% if user_profile.bio %}
+        <div style="background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; padding : 5px;font-size: 18px;">
+            <h2 style=" display: inline">Abute Us:</H2>
+                <br>
+                {{user_profile.bio}}
+        {% endif %}
+        </div>
+        <div>
+            {% if user_profile.trailer %}
+            <h2 style=" display: inline">Trailer on the server:</H2>
+                <br>
+                <iframe width="995" height="560"
+                    src="{{user_profile.trailer}}">
+                </iframe>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

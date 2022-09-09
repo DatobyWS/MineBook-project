@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+<div id="div_form" style="width: 530px;height: 510px;margin: 0 auto;">
+    <form style='color:rgb(29 29 58);padding: 3%;margin-top: 15px;' method="post" action="{%url 'serverReg'%}">
+        {% csrf_token %}
+        <div>
+            Server name:<p><input class="form" name="user_name" type="text" placeholder="Server name.." value="{{user_name}}" autofocus><p>
+        </div>        
+        <div>
+            Server IP:<p><input class="form" name="Server_IP" type="text" placeholder="Server IP.."value="{{Server_IP}}">
+        </div>
+        <div>
+            Server Email:<p><input class="form" name="email" type="email" placeholder="Email.."value="{{email}}">
+        </div>
+        <div>
+            Password:<p><input class="form" name="passwd" id="password" type="password" placeholder="Password.."value="{{passwd}}"><p>
+            Check the Password:<p><input class="form" id="Check_password" placeholder="Check your password.." name="Check_password">
+        </div>
+        <div>
+            <p>Are you a not Server page? click <a href="{%url 'join'%}" id="register_btn" style="padding: 0%;color:rgb(0, 194, 212);">here</a>!</p>
+            <p>
+            <p>Do you already have a user? login <a href="{%url 'login'%}" id="register_btn" style="padding: 0%;color:rgb( 0, 212, 49);">here</a>!</p>
+            <p>
+            <input type='submit' id="submit" class="form" placeholder="Submit!">
+        </div>
+    </form>
+</div>
+<div id="try_agian">
+    {% if messages%}
+        {%for message in messages%}                    
+            <a style="background-color:rgb(154, 0, 0) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
+            {%endfor%}                
+    {% endif %}
+</div>
+{% endblock %}
