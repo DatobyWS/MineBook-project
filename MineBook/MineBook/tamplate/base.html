@@ -14,26 +14,28 @@
         </header>
         <div id="toolbar" >
             <div id="main_contect" style="padding-top: 6px;">
-                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000">
+                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;padding: 6px 25px 0px 25px;" href="http://127.0.0.1:8000">
                     <i class="fa-solid fa-house"> Home          </i>
                 </a>
                 <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000/info">
                     <i class="fa-solid fa-circle-info"> info          </i>
                 </a>
-                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000/Profile/{{user.username}}">
-                    <i class="fa-solid fa-user"> {{user.username}}</i>
+                {% if user_profile.profileimg %}
+                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;padding: 6px 25px 0px 25px;" href="http://127.0.0.1:8000/Profile/{{user.username}}">
+                    <img src="{{user_profile.profileimg.url}}" style="height: 23px; width: 25px;border-radius: 2px;"> <p style="font-size: 25px; display: inline ;">{{user.username}}</p>
                 </a>
+                {% endif %}
                 {% if request.user.is_superuser %}
-                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000/statistics">
+                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;padding: 6px 25px 0px 25px;" href="http://127.0.0.1:8000/statistics">
                     <i class="fa-solid fa-calculator-simple">Statistics</i>
                 </a>
                 {% endif %}
                 {% if user.is_authenticated %}
-                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000/logout">
+                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;padding: 6px 25px 0px 25px;" href="http://127.0.0.1:8000/logout">
                     <i class="fa-solid fa-right-to-bracket"> logout</i>
                 </a>
                 {% else %}
-                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;" href="http://127.0.0.1:8000/login">
+                <a class="tool_bar" style="font-size: 19px;letter-spacing: 2px;padding: 6px 25px 0px 25px;" href="http://127.0.0.1:8000/login">
                     <i class="fa-solid fa-right-to-bracket"> login/regiser</i>
                 </a>
                 {% endif %}

@@ -3,6 +3,8 @@ from datetime import datetime
 from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
+import uuid
+from datetime import datetime
 
 # Create your models here.
 
@@ -51,6 +53,17 @@ class Status(models.Model):
     name=models.CharField(blank=True,max_length=60)
     def __str__(self):
         return self.user.username 
+
+class Post(models.Model):
+    id_post = models.UUIDField(primary_key=True,default=uuid.uuid4)
+    user = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='post_images')
+    caption = models.TextField() 
+    created_at = models.DateTimeField(default=datetime.now)
+    num_like = models.IntegerField(default=0)
+    locaion = models.CharField(max_length=250)
+    def __str__(self):
+        return self.user
 
 
 # class Profile(models.Model):

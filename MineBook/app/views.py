@@ -1,4 +1,5 @@
 import datetime
+from email.mime import image
 import time
 import threading
 import sqlite3
@@ -13,7 +14,7 @@ import  json
 import urllib.request 
 import ssl
 from django.contrib import messages
-from app.models import Profile, Server_Page,Status
+from app.models import Profile, Server_Page,Status,Post
 from django.contrib.auth import authenticate, login, logout
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
@@ -56,8 +57,6 @@ def player_time():
             new_time.save()
         time.sleep(15*60)
 
-
-
 def minecraft_dict_update():
     global minecraft_dict 
     while True:
@@ -94,7 +93,6 @@ def minecraft_dict_update():
         time.sleep(15*60)
         
 
-
 @login_required(login_url="login")
 def home(request):
     if 'q' in request.GET:
@@ -104,15 +102,28 @@ def home(request):
             if ip.find(q.lower())!=-1 or ip.find(q.upper())!=-1:
                 server_dict.update({ip:ip_dict})
                 ip=ip[1]
-        return render(request,'test.html',{"mydict":server_dict})
+        user_object = User.objects.get(username=request.user.username)
+        try:
+            user_profile = Profile.objects.get(user=user_object)
+        except:
+            user_profile = Server_Page.objects.get(user=user_object)
+        posts = Post.objects.all()
+        users= Profile.objects.all()
+        return render(request,'test.html',{"mydict":server_dict,'user_profile':user_profile,'posts':posts,'users':users})
     else:
         minecraft_dict
         t1 = threading.Thread(target=minecraft_dict_update, args=())
         t1.start()
         t2 = threading.Thread(target=player_time, args=())
         t2.start()
-
-    return render(request,'test.html',{"mydict":minecraft_dict})
+        user_object = User.objects.get(username=request.user.username)
+        try:
+            user_profile = Profile.objects.get(user=user_object)
+        except:
+            user_profile = Server_Page.objects.get(user=user_object)
+        posts = Post.objects.all()
+        users= Profile.objects.all()
+    return render(request,'test.html',{"mydict":minecraft_dict,'user_profile':user_profile,'posts':posts,'users':users})
 
 @login_required(login_url="login")
 def statistic(request):
@@ -135,7 +146,6 @@ def statistic(request):
                         mydict.update({i[0]:{'Maxplayer':i[1],'hightime':i[2],'Minplayer':g[1],'lowtime':g[2]}})
                         print(mydict)
     return render(request,'statistic.html',{'mydict':mydict})
-
 
 def join(request):
     if request.method == "POST":
@@ -283,7 +293,7 @@ def servers_page(request,pk):
 def info(request):
     return render(request,"info.html")
 
-
+@login_required(login_url="login")
 def settings(request):
     a=0
     try:
@@ -325,3 +335,17 @@ def proflie_page(request,pk):
         # 'user_posts_lenght',user_posts_lenght,
     }
     return render(request,"profile.html",context)
+
+@login_required(login_url="login")
+def upload(request):
+    if request.method == 'POST':
+        user = request.user.username
+        img = request.FILES.get('image_upload')
+        caption = request.POST['caption']
+        locaion = request.POST['location']
+
+        new_post= Post.objects.create(user=user,img=img,caption=caption,locaion=locaion)
+        new_post.save()
+        return redirect('')
+    else:
+        return redirect('')

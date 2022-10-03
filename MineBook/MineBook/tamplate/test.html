@@ -3,7 +3,7 @@
 {%load static%}
     <link rel="stylesheet" href="{% static 'css/test.css' %}">
         <div id="blog">
-            <div id="try_agian">
+            <div id="try_agian" style="display: inline;position:relative;bottom: 100px;">
                 {% if messages%}
                     {% for message in messages %}                    
                         <a style="background-color:rgb(0, 221, 48) ;color: rgb(255, 255, 255);border-radius: 5px;padding: 8px 20px 8px 20px;">{{ message }}</a>                                                            
@@ -11,7 +11,7 @@
                 {% endif %}
             </div>
             <br>
-            <div id="div_table">
+            <div id="div_table" style="border-radius: 3px;padding: 10px 0px 10px 0px;position: relative; display: inline;right: 890px;bottom: 17px;">
                 <form action="">
                     <input id="id" name='q' type='search' data-search style="
                     background-color:rgb(255, 255, 255);
@@ -29,7 +29,7 @@
                 <table id="table" class="table">
                 <tr><th>NAME<th>ONLINE<th>IP<th onclick="sortTable()" style="cursor: pointer;" onmouseover="this.innerHTML='Click to sort by Players';" onmouseout="this.innerHTML='PLAYERS'">PLAYERS<th>VERSION
                 {% for key, val in mydict.items %}
-                    <tr class="s-{{ forloop.counter }}" id="s-{{ forloop.counter }}"><td id="td_ip"><a href="http://127.0.0.1:8000/ServerPage/{{key}}" style="cursor: pointer;">{{key}}</td>
+                    <tr class="s-{{ forloop.counter }}" id="s-{{ forloop.counter }}"><td id="td_ip"><a href="http://127.0.0.1:8000/ServerPage/{{key}}" style="cursor: pointer;padding: 6px 13px 0px 13px;">{{key}}</td>
                     {% if val.online == "On" %}
                         <td style="background-color:rgb(255, 255, 255) ;color: rgb(81, 255, 0);"><i class="fa-solid fa-check"></i></td>
                     {% else %}
@@ -39,9 +39,79 @@
                     <td>{{val.player}}</td>
                     <td>{{val.version}}</td>
                 {% endfor %}
-                </table>
-                <input type="hidden"  id="clicks" value="2" >
+            </table>
+        </div>
+            <div id="main_profile" style="width: 1000px;height: auto;margin: 0 auto;padding:0px 10px 5px 10px;background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);border-radius: 5px;bottom: 405px;position: sticky; display: block; ">
+               
+                <br>
+
+            {% if user.username == user_profile.user.username %}
+            <div>
+                <form action="upload" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div style=" width: 640px;height: auto;margin: 0 auto;padding: 10px 180px 10px 180px;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; border: 2px;" >
+                        <h1 style="margin-left: 164px;margin-bottom: 5px;">Upload some post !</h1>
+                        <input type="file" name="image_upload" class="custom-file-input" style="
+                        background-color:rgb(255, 255, 255);
+                        color:rgb(0, 0, 0);
+                        padding: 8px 260px 8px 1px;
+                        border-color:rgb(110, 110, 110);
+                        transition: width 0.4s ease-in-out;
+                        border-radius: 5px;margin-left: 10%;
+                        margin-bottom: 5px;">
+                        <br>
+                        <input type="text" placeholder="Where.." name="location" style="
+                        background-color:rgb(255, 255, 255);
+                        color:rgb(0, 0, 0);
+                        padding: 8px 340px 8px 1px;
+                        border-color:rgb(110, 110, 110);
+                        transition: width 0.4s ease-in-out;
+                        border-radius: 5px;margin-left: 10%;
+                        margin-bottom: 5px;">
+                        <br>
+                        <textarea name="caption" placeholder="caption" style="
+                        background-color:rgb(255, 255, 255);
+                        color:rgb(0, 0, 0);
+                        padding: 8px 347px 40px 1px;
+                        border-color:rgb(110, 110, 110);
+                        transition: width 0.4s ease-in-out;
+                        border-radius: 5px;margin-left: 10%;
+                        margin-bottom: 5px;"></textarea>
+                        <br>
+                        <button type="submit" style="
+                        background-color:rgb(255, 255, 255);
+                        color:rgb(0, 0, 0);
+                        padding: 8px 130px 8px 130px;
+                        border-color:rgb(110, 110, 110);
+                        transition: width 0.4s ease-in-out;
+                        border-radius: 5px;margin-left: 164px;">Upload</button>
+                    </div>
+                </form>
             </div>
+            <div>
+                {% for post in posts reversed %}
+                    <div style=" width: 980px;height: auto;margin: 0 auto;padding: 10px  10px 10px;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; border: 2px;">
+                        <div style=" width: 970px;height: auto;margin: 0 auto;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);border-radius: 3px; border: 2px;">
+                            <a href="http://127.0.0.1:8000/Profile/{{post.user}}" style="color: black; padding-left: 5px;">
+                                <h2 style="padding-left: 7px;">{{post.user}}</h2>
+                                {% if request.user.username == post.user or request.user.is_superuser %}
+                                <button type="subbmit"></button>
+                                {% endif %}
+                            </a>
+                            {% if post.location %}
+                                <h3>{{post.locaion}}</h3>
+                            {% endif %}
+                            {% if post.caption %}
+                                <p style="padding-left: 7px;">{{post.caption}}</p>
+                            {% endif %}
+                            {% if post.img %}
+                                <img src="{{post.img.url}}" style=" width: 955px; height: 560px;padding: 0px 5px 0px 7px; max-width: 955px; min-width: 955px;" >
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+        {% endif %}
+                <input type="hidden"  id="clicks" value="2" >
         </div>
         <script src="{% static 'javascript/serch.js' %}"></script>
 {%endblock%}
