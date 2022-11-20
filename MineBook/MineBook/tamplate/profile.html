@@ -32,7 +32,24 @@
                 </iframe>
         </div>
         {% endif %}
-
+        {% for post in posts reversed %}
+                <div style=" width: 980px;height: auto;margin: 0 auto;padding: 10px  10px 10px;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; border: 2px;">
+                    <div style=" width: 970px;height: auto;margin: 0 auto;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);border-radius: 3px; border: 2px;">
+                        <a href="http://127.0.0.1:8000/Profile/{{post.user}}" style="color: black; padding-left: 5px;">
+                            <h2 style="padding-left: 7px;display: inline-grid;">{{post.user}}</h2>
+                        </a>
+                        {% if post.location %}
+                            <h3>{{post.locaion}}</h3>
+                        {% endif %}
+                        {% if post.caption %}
+                            <p style="padding-left: 7px;">{{post.caption}}</p>
+                        {% endif %}
+                        {% if post.img %}
+                            <img src="{{post.img.url}}" style=" width: 955px; height: 560px;padding: 0px 5px 0px 7px; max-width: 955px; min-width: 955px;" >
+                        {% endif %}
+                    </div>
+                </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

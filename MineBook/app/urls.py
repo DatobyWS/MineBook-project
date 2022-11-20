@@ -14,5 +14,7 @@ urlpatterns = [
     path('statistics',views.statistic,name='statistic'),
     path('info',views.info,name='info'),
     path('settings',views.settings,name='settings'),
-    path('upload',views.upload,name='upload')
+    path('upload',views.upload,name='upload'),
+    path('deletepost',views.deletepost,name='deletepost'),
+    path('like-post',views.likePost,name='likePost')
 ]

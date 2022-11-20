@@ -59,7 +59,7 @@
     color: rgb(116, 116, 116);
     /* background-color: rgba(255, 255, 255, 0.749); */
 }
-header{
+#realheader{
     position:sticky;
     background-image: url("https://www.planetminecraft.com/images/layout/themes/modern/header.png");
     background-repeat: no-repeat;

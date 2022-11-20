@@ -21,7 +21,6 @@ function copyIP(htmlElement){
         return;
     }
     let elementText = htmlElement.innerText;
-    
     let inputElement= document.createElement('input');
     inputElement.setAttribute('value',elementText);
     document.body.appendChild(inputElement)
@@ -76,6 +75,8 @@ function sortTable() {
       }
     }
 }
+
+
 
 // $(document).ready(function(){  
 //     $('#table thaed tr')

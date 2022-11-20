@@ -13,7 +13,7 @@
             <br>
             <div id="div_table" style="border-radius: 3px;padding: 10px 0px 10px 0px;position: relative; display: inline;right: 890px;bottom: 17px;">
                 <form action="">
-                    <input id="id" name='q' type='search' data-search style="
+                    <input name='q' type='search' data-search style="
                     background-color:rgb(255, 255, 255);
                     color:rgb(0, 0, 0);
                     padding: 8px 130px 8px 1px;
@@ -26,19 +26,22 @@
                     color: rgb(255, 255, 255);
                     border-color:rgb(0, 212, 49);border-radius: 5px;">Search</button>
                 </form>
-                <table id="table" class="table">
+                <table id="table" class="table" style="position: relative;">
                 <tr><th>NAME<th>ONLINE<th>IP<th onclick="sortTable()" style="cursor: pointer;" onmouseover="this.innerHTML='Click to sort by Players';" onmouseout="this.innerHTML='PLAYERS'">PLAYERS<th>VERSION
                 {% for key, val in mydict.items %}
-                    <tr class="s-{{ forloop.counter }}" id="s-{{ forloop.counter }}"><td id="td_ip"><a href="http://127.0.0.1:8000/ServerPage/{{key}}" style="cursor: pointer;padding: 6px 13px 0px 13px;">{{key}}</td>
-                    {% if val.online == "On" %}
-                        <td style="background-color:rgb(255, 255, 255) ;color: rgb(81, 255, 0);"><i class="fa-solid fa-check"></i></td>
-                    {% else %}
-                        <td style="background-color:rgb(221, 0, 0) ;color: rgb(255, 0, 0);"><i class="fa-solid fa-x"></i></td>
-                    {% endif %}
-                    <td class="td_ip" id="ip-{{ forloop.counter }}" onmouseover="this.innerHTML='Click to copy IP! : {{val.ip}}';" onmouseout="this.innerHTML='{{val.ip}}'" onclick="copyIP(document.getElementById(`ip-{{ forloop.counter }}`));" style="cursor: pointer;" >{{val.ip}}</td>
-                    <td>{{val.player}}</td>
-                    <td>{{val.version}}</td>
+                    
+                        <tr class="s-{{ forloop.counter }}" id="s-{{ forloop.counter }}"><td id="td_ip"><a href="http://127.0.0.1:8000/ServerPage/{{key}}" style="cursor: pointer;padding: 6px 13px 0px 13px;">{{key}}</td>
+                        {% if val.online == "On" %}
+                            <td style="background-color:rgb(255, 255, 255) ;color: rgb(81, 255, 0);"><i class="fa-solid fa-check"></i></td>
+                        {% else %}
+                            <td style="background-color:rgb(221, 0, 0) ;color: rgb(255, 0, 0);"><i class="fa-solid fa-x"></i></td>
+                        {% endif %}
+                        <td class="td_ip" id="ip-{{ forloop.counter }}" onmouseover="this.innerHTML='Click to copy IP! : {{val.ip}}';" onmouseout="this.innerHTML='{{val.ip}}'" onclick="copyIP(document.getElementById(`ip-{{ forloop.counter }}`));" style="cursor: pointer;" >{{val.ip}}</td>
+                        <td>{{val.player}}</td>
+                        <td>{{val.version}}</td>
+                    
                 {% endfor %}
+                
             </table>
         </div>
             <div id="main_profile" style="width: 1000px;height: auto;margin: 0 auto;padding:0px 10px 5px 10px;background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);border-radius: 5px;bottom: 405px;position: sticky; display: block; ">
@@ -93,9 +96,11 @@
                     <div style=" width: 980px;height: auto;margin: 0 auto;padding: 10px  10px 10px;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; border: 2px;">
                         <div style=" width: 970px;height: auto;margin: 0 auto;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_light.gif);border-radius: 3px; border: 2px;">
                             <a href="http://127.0.0.1:8000/Profile/{{post.user}}" style="color: black; padding-left: 5px;">
-                                <h2 style="padding-left: 7px;">{{post.user}}</h2>
+                                <h2 style="padding-left: 7px;display: inline-grid;">{{post.user}}</h2>
                                 {% if request.user.username == post.user or request.user.is_superuser %}
-                                <button type="subbmit"></button>
+                                    <form action="{%url 'deletepost'%}">
+                                        <input type="submit" style="display: inline-grid;grid-auto-columns: auto;" value="Delete"/>
+                                    </form>
                                 {% endif %}
                             </a>
                             {% if post.location %}
@@ -107,11 +112,17 @@
                             {% if post.img %}
                                 <img src="{{post.img.url}}" style=" width: 955px; height: 560px;padding: 0px 5px 0px 7px; max-width: 955px; min-width: 955px;" >
                             {% endif %}
+                            <i class="fa-solid fa-thumbs-up"><a href="/likePost?post_id={{post.id}}"></i>
                         </div>
                     </div>
                 {% endfor %}
         {% endif %}
                 <input type="hidden"  id="clicks" value="2" >
         </div>
+        <div style=" width: 980px;height: auto;margin: 0 auto;padding: 10px  10px 10px;position: relative;background-image: url(https://www.planetminecraft.com/images/layout/window_bg.gif);border-radius: 3px; border: 2px;">
+            <input type="button" value="Load more" style="text-align: center;padding: 8px 20px 8px 20px;background-color: rgb(79, 79, 79);color: rgb(255, 255, 255);border-color:rgb(62, 62, 62);position:relative;left: 445px;">
+        </div>
         <script src="{% static 'javascript/serch.js' %}"></script>
+    </div>
+</div>
 {%endblock%}

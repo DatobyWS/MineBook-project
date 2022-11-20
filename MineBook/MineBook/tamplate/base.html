@@ -9,7 +9,7 @@
         <meta charset='UTF-8'>
     </head>
     <body>
-        <header >
+        <header id="realheader" >
             <img src="{% static 'css/images/Minebook.png' %}" id="logo">
         </header>
         <div id="toolbar" >
@@ -44,5 +44,35 @@
         {% block content%}
 
         {%endblock%}
+        <!-- <div>
+            <header id="chat" style="display: flex;flex-direction: row;align-items: center;padding: 0 0.8rem 0 0;position: relative;border-bottom: 1px solid var(--color-border-faint);background-image: url(https://www.planetminecraft.com/images/layout/smoothstone_dark.gif);">
+                <div id="root">
+                    
+                    <input type="text">
+                </div>
+            </header>
+        </div> -->
+        <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <!-- <script>
+                axios.get('http://localhost:5000/getfiles')
+                    .then((response) => {
+                        const jsFiles = response.data.jsFiles;
+                        const cssFiles = response.data.cssFiles;
+
+                        elements = fileName.map(eachFileName => {
+                            var script = document.createElement('script');
+                            script.src = `http://localhost:5000/${eachFileName}`;
+                            document.head.appendChild(script)
+                            return script;
+                        })
+                        elements = useCss(appCss => {
+                            var link = document.createElement('link');
+                            link.rel = `stylesheet`;
+                            link.href = `http://localhost:5000/${eachFileName}`;
+                            document.head.appendChild(link)
+                            return link;
+                        })
+                    });
+            </script> -->
     </body>
 </html>

@@ -20,7 +20,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
 minecraft_dict = {}
+
 
 def info_from_server(minecraft_server):
     """
@@ -87,9 +89,7 @@ def minecraft_dict_update():
             new = sorted(minecraft_dict.items(), key = lambda x: int(x[1]['player']), reverse=True)
             minecraft_dict={}
             for i in new:
-                print("hello ",i)
                 minecraft_dict.update({i[0]:i[1]})
-                print('hey',minecraft_dict)
         time.sleep(15*60)
         
 
@@ -109,7 +109,7 @@ def home(request):
             user_profile = Server_Page.objects.get(user=user_object)
         posts = Post.objects.all()
         users= Profile.objects.all()
-        return render(request,'test.html',{"mydict":server_dict,'user_profile':user_profile,'posts':posts,'users':users})
+        return render(request,'index.html',{"mydict":server_dict,'user_profile':user_profile,'posts':posts,'users':users})
     else:
         minecraft_dict
         t1 = threading.Thread(target=minecraft_dict_update, args=())
@@ -123,7 +123,9 @@ def home(request):
             user_profile = Server_Page.objects.get(user=user_object)
         posts = Post.objects.all()
         users= Profile.objects.all()
-    return render(request,'test.html',{"mydict":minecraft_dict,'user_profile':user_profile,'posts':posts,'users':users})
+        count = 0
+        
+    return render(request,'index.html',{"mydict":minecraft_dict,'user_profile':user_profile,'posts':posts,'users':users,'count':count})
 
 @login_required(login_url="login")
 def statistic(request):
@@ -287,6 +289,7 @@ def servers_page(request,pk):
         # 'user_posts':user_posts,
         # 'user_posts_lenght',user_posts_lenght,
     }
+    posts = Post.objects.all()
     return render(request,"profile.html",context)
 
 
@@ -328,11 +331,13 @@ def proflie_page(request,pk):
     user_profile = Profile.objects.get(user=user_object)
     # user_posts = Post.objects.filter(user=pk)
     # user_posts_lenght= len(user_posts)
+    posts = Post.objects.all()
     context = {
         'user_object':user_object,
         'user_profile' : user_profile,
         # 'user_posts':user_posts,
         # 'user_posts_lenght',user_posts_lenght,
+        'posts':posts
     }
     return render(request,"profile.html",context)
 
@@ -346,6 +351,25 @@ def upload(request):
 
         new_post= Post.objects.create(user=user,img=img,caption=caption,locaion=locaion)
         new_post.save()
+        return redirect('')
+    else:
+        return redirect('')
+
+@login_required(login_url="login")
+def deletepost(request,pk):
+    if request.method=='POST':
+        post=Post.objects.get(id_post=pk)
+        post.delete()
+        return redirect('')
+    else:
+        return redirect('')
+
+
+@login_required(login_url="login")
+def likePost(request,pk):
+    if request.method=='POST':
+        post=Post.objects.get(id_post=pk)
+        post.delete()
         return redirect('')
     else:
         return redirect('')

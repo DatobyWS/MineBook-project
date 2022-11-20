@@ -1,5 +1,6 @@
 const searchInput = document.getElementById("src")
-var t = document.getElementById("table")
+const spinner = document.getElementById("spinner")
+const t = document.getElementById("table")
 
 
 searchInput.addEventListener("input",e =>{
