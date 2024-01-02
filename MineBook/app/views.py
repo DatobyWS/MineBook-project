@@ -23,6 +23,8 @@ from django.contrib.auth.decorators import login_required
 
 minecraft_dict = {}
 
+def a():
+    pass
 
 def info_from_server(minecraft_server):
     """
